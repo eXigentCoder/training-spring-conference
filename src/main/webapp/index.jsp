@@ -10,11 +10,11 @@
 <body>
 	<h1>Hello ${event.name}!</h1>
 
-	<a href="event.html">
+	<a href="event">
 		Add Event >>
 	</a>
 	<br />
-	<a href="attendee.html">
+	<a href="attendee">
 		Add Attendee >>
 	</a>
 

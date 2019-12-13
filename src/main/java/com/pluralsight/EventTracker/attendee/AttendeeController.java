@@ -22,7 +22,7 @@ public class AttendeeController {
 		
 		System.out.println(attendee);
 		
-		return "redirect:index.html";
+		return "redirect:index";
 		
 	}
 	
