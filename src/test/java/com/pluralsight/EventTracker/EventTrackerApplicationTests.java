@@ -1,10 +1,10 @@
-package com.pluralsight.conferencedemo;
+package com.pluralsight.EventTracker;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ConferenceDemoApplicationTests {
+class EventTrackerApplicationTests {
 
 	@Test
 	void contextLoads() {

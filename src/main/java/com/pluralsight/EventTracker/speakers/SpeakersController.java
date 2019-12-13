@@ -1,7 +1,5 @@
-package com.pluralsight.conferencedemo.controllers;
+package com.pluralsight.EventTracker.speakers;
 
-import com.pluralsight.conferencedemo.models.Speaker;
-import com.pluralsight.conferencedemo.repositories.SpeakerRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +36,7 @@ public class SpeakersController {
     }
 
     @RequestMapping(value="{id}",method = RequestMethod.PUT)
-    public Speaker update(@PathVariable Long id,@RequestBody Speaker speaker){
+    public Speaker update(@PathVariable Long id, @RequestBody Speaker speaker){
         Speaker existing = speakerRepository.getOne(id);
         BeanUtils.copyProperties(speaker,existing,"id");
         return speakerRepository.saveAndFlush(existing);

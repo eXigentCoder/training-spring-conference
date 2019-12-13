@@ -1,7 +1,5 @@
-package com.pluralsight.conferencedemo.controllers;
+package com.pluralsight.EventTracker.sessions;
 
-import com.pluralsight.conferencedemo.models.Session;
-import com.pluralsight.conferencedemo.repositories.SessionRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,7 +41,7 @@ public class SessionsController {
     }
 
     @RequestMapping(value="{id}",method = RequestMethod.PUT)
-    public Session update(@PathVariable Long id,@RequestBody Session session){
+    public Session update(@PathVariable Long id, @RequestBody Session session){
         Session existing = sessionRepository.getOne(id);
         BeanUtils.copyProperties(session,existing,"id");
         return  sessionRepository.saveAndFlush(existing);

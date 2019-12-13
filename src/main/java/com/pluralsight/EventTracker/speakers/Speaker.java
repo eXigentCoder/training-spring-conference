@@ -1,7 +1,7 @@
-package com.pluralsight.conferencedemo.models;
+package com.pluralsight.EventTracker.speakers;
 
+import com.pluralsight.EventTracker.sessions.Session;
 import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import java.util.List;
 

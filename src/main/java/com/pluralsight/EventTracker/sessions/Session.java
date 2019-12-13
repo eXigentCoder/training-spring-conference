@@ -1,4 +1,6 @@
-package com.pluralsight.conferencedemo.models;
+package com.pluralsight.EventTracker.sessions;
+
+import com.pluralsight.EventTracker.speakers.Speaker;
 
 import javax.persistence.*;
 import java.util.List;
