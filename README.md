@@ -17,3 +17,4 @@ DATA: https://github.com/dlbunker/ps-first-spring-boot-app
 - http://localhost:8080/css/main.css - statically served css file.
 - http://localhost:8080/img/beer.jpg - statically served image file.
 - http://localhost:8080/pdf/helloworld.pdf - statically served pdf file.
+- http://localhost:8080/attendee - Attendee crud page

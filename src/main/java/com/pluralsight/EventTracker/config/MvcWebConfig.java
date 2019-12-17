@@ -1,4 +1,4 @@
-package com.pluralsight.EventTracker;
+package com.pluralsight.EventTracker.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
