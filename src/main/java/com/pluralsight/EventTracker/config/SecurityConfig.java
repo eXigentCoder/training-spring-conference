@@ -3,6 +3,8 @@ package com.pluralsight.EventTracker.config;
 import com.pluralsight.EventTracker.auth.CustomUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -37,26 +39,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/login", "/hello").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/**").hasAnyRole("ADMIN", "USER")
-                // .and().httpBasic() // Basic auth, need to comment out below.
-                // .and().formLogin() //default login form
-                // .and().logout().logoutSuccessUrl("/login").permitAll() //default logout
-                .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .defaultSuccessUrl("/attendee")
-                    .failureUrl("/login?error=true")
-                    .permitAll()
-                .and()
-                    .logout()
-                    .logoutSuccessUrl("/login?logout=true")
-                    .invalidateHttpSession(true)
-                    .permitAll()
-                .and().csrf().disable();
+    @Configuration
+    @Order(1)
+    public static class ApiWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
+        protected void configure(HttpSecurity http) throws Exception {
+            http.antMatcher("/api/**").authorizeRequests().anyRequest().hasAnyRole("ADMIN", "USER").and().httpBasic();
+        }
+    }
+
+    @Configuration
+    @Order(2)
+    public static class FormLoginWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http.authorizeRequests()
+                    .antMatchers("/login", "/hello").permitAll()
+                    .antMatchers("/admin/**").hasRole("ADMIN")
+                    .antMatchers("/**").hasAnyRole("ADMIN", "USER")
+                    // .and().formLogin() //default login form
+                    // .and().logout().logoutSuccessUrl("/login").permitAll() //default logout
+                    .and()
+                        .formLogin()
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/attendee")
+                        .failureUrl("/login?error=true")
+                        .permitAll()
+                    .and()
+                        .logout()
+                        .logoutSuccessUrl("/login?logout=true")
+                        .invalidateHttpSession(true)
+                        .permitAll()
+                        .and().csrf().disable();
+            }
     }
 }
