@@ -43,7 +43,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login", "/hello").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/**").hasAnyRole("ADMIN", "USER")
-                //.and().formLogin() //default login form
+                // .and().httpBasic() // Basic auth, need to comment out below.
+                // .and().formLogin() //default login form
+                // .and().logout().logoutSuccessUrl("/login").permitAll() //default logout
                 .and()
                     .formLogin()
                     .loginPage("/login")
@@ -55,7 +57,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .logoutSuccessUrl("/login?logout=true")
                     .invalidateHttpSession(true)
                     .permitAll()
-                .and().logout().logoutSuccessUrl("/login").permitAll()
                 .and().csrf().disable();
     }
 }
