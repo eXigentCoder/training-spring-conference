@@ -50,5 +50,8 @@
 		<br>
 		<input type="submit" class="btn" value="Enter Attendee" />
 	</form:form>
+	<a href="/logout">
+		Log out
+	</a>
 </body>
 </html>
