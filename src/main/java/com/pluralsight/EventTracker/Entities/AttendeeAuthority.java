@@ -1,11 +1,13 @@
 package com.pluralsight.EventTracker.Entities;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "attendee_authority", schema = "public", catalog = "conference_app")
-public class AttendeeAuthority {
+public class AttendeeAuthority implements GrantedAuthority {
     private Integer id;
     private String authority;
     private Attendee attendeesByAttendeeId;

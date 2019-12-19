@@ -16,7 +16,7 @@ public class Attendee {
     private String phoneNumber;
     private Boolean enabled;
     private String password;
-    private Collection<AttendeeAuthority> attendeeAuthoritiesByAttendeeId;
+    private Collection<AttendeeAuthority> attendeeAuthorities;
 
     @Id
     @Column(name = "attendee_id", nullable = false)
@@ -130,11 +130,11 @@ public class Attendee {
     }
 
     @OneToMany(mappedBy = "attendeesByAttendeeId")
-    public Collection<AttendeeAuthority> getAttendeeAuthoritiesByAttendeeId() {
-        return attendeeAuthoritiesByAttendeeId;
+    public Collection<AttendeeAuthority> getAttendeeAuthorities() {
+        return attendeeAuthorities;
     }
 
-    public void setAttendeeAuthoritiesByAttendeeId(Collection<AttendeeAuthority> attendeeAuthoritiesByAttendeeId) {
-        this.attendeeAuthoritiesByAttendeeId = attendeeAuthoritiesByAttendeeId;
+    public void setAttendeeAuthorities(Collection<AttendeeAuthority> attendeeAuthoritiesByAttendeeId) {
+        this.attendeeAuthorities = attendeeAuthoritiesByAttendeeId;
     }
 }
