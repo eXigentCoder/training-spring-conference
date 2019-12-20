@@ -30,7 +30,7 @@ public class CustomUserDetailService implements UserDetailsService {
         var encoder = new BCryptPasswordEncoder();
         builder = org.springframework.security.core.userdetails.User.withUsername("a");
         builder.password(encoder.encode("a"));
-        builder.roles("ADMIN", "USER");
+        builder.roles("USER");
         var user = builder.build();
         return user;
 //

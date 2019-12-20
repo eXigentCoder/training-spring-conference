@@ -1,5 +1,6 @@
 package com.pluralsight.EventTracker.attendee;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +12,7 @@ import javax.validation.Valid;
 
 @Controller
 public class AttendeeController {
+	@PreAuthorize("hasRole('USER')")
 	@RequestMapping(value="/attendee", method = RequestMethod.GET)
 	public String displayAttendeePage(Model model) {
 		Attendee attendee = new Attendee();
@@ -19,7 +21,8 @@ public class AttendeeController {
 		
 		return "attendee";
 	}
-	
+
+	@PreAuthorize("hasRole('USER') and hasPermission(#attendee, 'createAttendee')")
 	@RequestMapping(value="/attendee", method = RequestMethod.POST)
 	public String processAttendee(@Valid Attendee attendee, BindingResult bindingResult, Model model) {
 		
@@ -27,7 +30,7 @@ public class AttendeeController {
 		if(bindingResult.hasErrors()){
 			return "attendee";
 		}
-		return "redirect:index";
+		return "redirect:/";
 		
 	}
 	
