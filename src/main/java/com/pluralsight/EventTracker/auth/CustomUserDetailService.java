@@ -28,30 +28,27 @@ public class CustomUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         var encoder = new BCryptPasswordEncoder();
+//        var attendee = attendeeRepository.findOneByEmail(username);
+//        if(attendee == null){
+//            attendee = new Attendee();
+//            attendee.setAttendeeId(1);
+//            attendee.setFirstName("Ryan");
+//            attendee.setLastName("Kotzen");
+//            attendee.setTitle("Mr");
+//            attendee.setCompany("Entelect");
+//            attendee.setEmail("ryank@entelect.co.za");
+//            attendee.setPhoneNumber("555 555 5555");
+//            attendee.setEnabled(true);
+//            attendee.setPassword(encoder.encode("bob123#"));
+//            attendeeRepository.saveAndFlush(attendee);
+//            System.out.println(attendee);
+//            throw new UsernameNotFoundException("Username \""+ username +"\" not found.");
+//        }
         builder = org.springframework.security.core.userdetails.User.withUsername("a");
         builder.password(encoder.encode("a"));
         builder.roles("USER");
         var user = builder.build();
+        System.out.println(user);
         return user;
-//
-//
-//        var attendee = attendeeRepository.findOneByEmail(username);
-//        if(attendee == null){
-////            attendee = new Attendee();
-////            attendee.setAttendeeId(1);
-////            attendee.setFirstName("Ryan");
-////            attendee.setLastName("Kotzen");
-////            attendee.setTitle("Mr");
-////            attendee.setCompany("Entelect");
-////            attendee.setEmail("ryank@entelect.co.za");
-////            attendee.setPhoneNumber("555 555 5555");
-////            attendee.setEnabled(true);
-////            attendee.setPassword(encoder.encode("bob123#"));
-////            attendeeRepository.saveAndFlush(attendee);
-////            System.out.println(attendee);
-//            throw new UsernameNotFoundException("Username \""+ username +"\" not found.");
-//        }
-//
-//        //return new AttendeeUserDetails(attendee);
     }
 }
